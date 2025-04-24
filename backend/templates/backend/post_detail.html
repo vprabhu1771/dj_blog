@@ -1,0 +1,20 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>Category: {{ post.category }}</p>
+<p>Tags: {{ post.tags.all|join:", " }}</p>
+
+<form action="{% url 'like_post' post.slug %}" method="post">
+    {% csrf_token %}
+    <button type="submit">{{ post.total_likes }} Like{{ post.total_likes|pluralize }}</button>
+</form>
+
+<h3>Comments</h3>
+{% for comment in comments %}
+    <p>{{ comment.user }}: {{ comment.content }}</p>
+{% endfor %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ c_form.as_p }}
+    <button type="submit">Add Comment</button>
+</form>
