@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Tag, Post, PostTag, Category
+from backend.models import Tag, Post, PostTag, Category, PostCategory
 
 
 # Register your models here.
@@ -18,12 +18,17 @@ class PostTagInline(admin.TabularInline):
     extra = 1  # Number of empty rows shown
     # autocomplete_fields = ['tag']  # Optional: if you have many tags
 
+class PostCategoryInline(admin.TabularInline):
+    model = PostCategory
+    extra = 1  # Number of empty rows shown
+    # autocomplete_fields = ['tag']  # Optional: if you have many tags
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
 
     list_display = ('title', 'content', 'display_tags',)
 
-    inlines = [PostTagInline]  # Adds the tabular inline for PostTag
+    inlines = [PostTagInline, PostCategoryInline]  # Adds the tabular inline for PostTag
 
     def display_tags(self, obj):
         return ", ".join(tag.name for tag in obj.tags.all())
