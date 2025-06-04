@@ -26,7 +26,7 @@ class PostCategoryInline(admin.TabularInline):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'content', 'display_tags',)
+    list_display = ('title', 'content', 'display_tags', 'display_categories',)
 
     inlines = [PostTagInline, PostCategoryInline]  # Adds the tabular inline for PostTag
 
@@ -34,3 +34,8 @@ class PostAdmin(admin.ModelAdmin):
         return ", ".join(tag.name for tag in obj.tags.all())
 
     display_tags.short_description = 'Tags'
+
+    def display_categories(self, obj):
+        return ", ".join(category.name for category in obj.categories.all())
+
+    display_categories.short_description = 'Categories'
