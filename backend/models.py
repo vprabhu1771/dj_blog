@@ -35,6 +35,8 @@ class Post(models.Model):
 
     tags = models.ManyToManyField(Tag, through='PostTag')
 
+    categories = models.ManyToManyField(Category, through='PostCategory')
+
     def __str__(self):
         return self.title
 
