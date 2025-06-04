@@ -50,3 +50,13 @@ class PostTag(models.Model):
     class Meta:
         db_table = 'post_tag'
         unique_together = ('post', 'tag')  # Optional: prevent duplicate entries
+
+class PostCategory(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'post_category'
+        unique_together = ('post', 'category')  # Optional: prevent duplicate entries
