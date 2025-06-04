@@ -1,7 +1,13 @@
 from django.contrib import admin
-from backend.models import Tag, Post, PostTag
+from backend.models import Tag, Post, PostTag, Category
+
 
 # Register your models here.
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = ('name',)
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
 
