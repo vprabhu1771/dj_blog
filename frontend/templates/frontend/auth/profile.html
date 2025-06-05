@@ -1,0 +1,23 @@
+{% extends 'frontend/layout/app.html' %}
+
+{% block title %}
+
+{{ page_title }}
+
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ page_title }}</h1> ☻
+
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Gender:</strong> {{ user.get_gender_display }}</p>
+<p><strong>Groups:</strong>
+    {% for group in groups %}
+        {{ group }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        No groups assigned.
+    {% endfor %}
+</p>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'frontend/layout/app.html' %}
+
+{% block title %}
+
+{{ page_title }}
+
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="email">Email</label>
+
+    <input type="text" name="email">
+
+    <label>Gender</label>
+    <select name="gender" class="form-select">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+
+    <label for="password">Password</label>
+
+    <input type="password" name="password">
+
+    <label for="confirmPassword">Confirm Password</label>
+
+    <input type="password" name="confirmPassword">
+
+    <button>Register</button>
+
+</form>
+
+{% endblock %}

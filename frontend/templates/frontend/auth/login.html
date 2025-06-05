@@ -1,0 +1,26 @@
+{% extends 'frontend/layout/app.html' %}
+
+{% block title %}
+
+{{ page_title }}
+
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="email">Email</label>
+
+    <input type="text" name="email">
+
+    <label for="password">Password</label>
+
+    <input type="password" name="password">
+
+    <button>Login</button>
+
+</form>
+
+{% endblock %}
